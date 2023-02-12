@@ -37,4 +37,5 @@ build/
 ### Mac OS ###
 .DS_Store
 
+# Database connection class
 src/main/java/org/example/DBC.java
