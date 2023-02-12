@@ -8,7 +8,14 @@ public class MainUI extends JFrame {
     private JComboBox comboBox1;
     private JComboBox comboBox2;
     private JTextField textField1;
-    private JButton button1;
+    private JButton registrarVentaButton;
+    private JComboBox comboBox3;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JButton registrarCompraButton;
+    private JTextField textField4;
+    private JTextField textField5;
+    private JButton agregarProductoButton;
 
     public void setUI(){
         this.setContentPane(this.panel1);
