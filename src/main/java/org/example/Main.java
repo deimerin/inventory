@@ -9,16 +9,10 @@ public class Main {
         DBC db = new DBC();
         Connection con = db.connect();
 
-        PreparedStatement pstmt = null;
+        Compra newCompra = new Compra();
 
-        String sql = "INSERT INTO (column1, column2) VALUES (?, ?)";
-        pstmt = con.prepareStatement(sql);
-        pstmt.setString(1, "value1");
-        pstmt.setInt(2, 123);
-        pstmt.executeUpdate();
+        newCompra.agregarProducto(con, "Headphones", 12, 300);
 
-
-        con.
 
         //MainUI ui = new MainUI();
         //ui.setUI();

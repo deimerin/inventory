@@ -16,6 +16,7 @@ public class MainUI extends JFrame {
     private JTextField textField4;
     private JTextField textField5;
     private JButton agregarProductoButton;
+    private JTextField textField6;
 
     public void setUI(){
         this.setContentPane(this.panel1);
