@@ -4,11 +4,15 @@ import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        DBC db = new DBC();
-        Connection con = db.connect();
-        Compra newCompra = new Compra();
+        //DBC db = new DBC();
+        //Connection con = db.connect();
+        //Compra newCompra = new Compra();
 
-        newCompra.registrarCompra(con,"Headphones",25,250);
+        //Venta newVenta = new Venta();
+
+        //newVenta.registrarVenta(con,"Joyce", "Headphones", 3);
+
+        //newCompra.registrarCompra(con,"Headphones",25,250);
 
 //        String nombre = "Headphones";
 //
