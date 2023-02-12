@@ -13,7 +13,7 @@ public class MainUI extends JFrame {
     public void setUI(){
         this.setContentPane(this.panel1);
         this.setTitle("Sistema de Inventario");
-        this.setBounds(600, 200, 275, 235);
+        this.setBounds(600, 20, 295, 235);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
