@@ -87,9 +87,5 @@ public class Compra {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
-
-
     }
 }
