@@ -15,9 +15,9 @@ public class MainUI extends JFrame {
     private JComboBox selectorProductos;
     private JTextField cantidadVenta;
     private JButton registrarVentaButton;
-    private JComboBox comboBox3;
-    private JTextField textField2;
-    private JTextField textField3;
+    private JComboBox productoCompra;
+    private JTextField cantidadCompra;
+    private JTextField precioCompra;
     private JButton registrarCompraButton;
     private JTextField nombreProducto;
     private JTextField cantidadProducto;
@@ -42,7 +42,6 @@ public class MainUI extends JFrame {
         Productos Productos = new Productos();
         VariablesProducto varProducto = new VariablesProducto(nombreProducto, cantidadProducto, precioProducto);
         Venta newVenta = new Venta();
-        //newCompra.registrarCompra(con,"Headphones",15,255);
 
         this.setContentPane(this.panel1);
         this.setTitle("Sistema de Inventario");
@@ -50,8 +49,10 @@ public class MainUI extends JFrame {
         this.setVisible(true);
         Clientes.setClientes(con, selectorClientes);
         Productos.setProductos(con, selectorProductos);
+        Productos.setProductos(con, productoCompra);
         selectorProductos.setSelectedIndex(-1);
         selectorClientes.setSelectedIndex(-1);
+        productoCompra.setSelectedIndex(-1);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         agregarProductoButton.addActionListener(new ActionListener() {
@@ -81,6 +82,7 @@ public class MainUI extends JFrame {
                     nombreProducto.setText("");
                     cantidadProducto.setText("");
                     precioProducto.setText("");
+                    setTableInven(con);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -130,14 +132,53 @@ public class MainUI extends JFrame {
 
                 try {
                     newVenta.registrarVenta(con,client, product, amount);
-                    JOptionPane.showMessageDialog(null, "¡Venta registrada con exito!");
+                    JOptionPane.showMessageDialog(null, "¡Venta realizada con exito!");
                     selectorClientes.setSelectedItem(null);
                     selectorProductos.setSelectedItem(null);
                     valorUndVenta.setText("");
                     cantidadVenta.setText("");
+                    setTableVentas(con);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
+            }
+        });
+
+        registrarCompraButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(productoCompra.getSelectedIndex() == -1){
+                    JOptionPane.showMessageDialog(null, "El campo producto es requerido");
+                    return;
+                }
+
+                String cantidadStr = cantidadCompra.getText();
+
+                if (cantidadStr.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "El campo cantidad es requerido");
+                    return;
+                }
+
+                String precioStr = precioCompra.getText();
+
+                if (precioStr.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "El campo precio es requerido");
+                    return;
+                }
+
+                String producto = productoCompra.getSelectedItem().toString();
+                Integer cantidadInt = Integer.parseInt(cantidadStr);
+                Integer precioInt = Integer.parseInt(precioStr);
+                try {
+                    newCompra.registrarCompra(con, producto, cantidadInt, precioInt);
+                    JOptionPane.showMessageDialog(null, "¡Compra realizada con exito!");
+                    productoCompra.setSelectedItem(null);
+                    cantidadCompra.setText("");
+                    precioCompra.setText("");
+                    setTableCom(con);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+
             }
         });
 
@@ -203,7 +244,7 @@ public class MainUI extends JFrame {
     }
 
     public void setTableCom(Connection con) throws SQLException {
-        // Tabla Inventory
+        // Tabla compra
         DefaultTableModel model = new DefaultTableModel();
 
         comTable.setAutoCreateRowSorter(true);
