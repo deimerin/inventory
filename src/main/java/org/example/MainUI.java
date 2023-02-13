@@ -32,7 +32,12 @@ public class MainUI extends JFrame {
 
         DBC db = new DBC();
         Connection con = db.connect();
-        Compra newCompra = new Compra();
+
+        BaseFactory compraFactory = new CompraFactory();
+        Compra newCompra = (Compra) compraFactory.crear();
+
+        BaseFactory ventaFactory = new VentaFactory();
+        Venta newVenta = (Venta) ventaFactory.crear();
 
         setTableVentas(con);
         setTableInven(con);
@@ -41,7 +46,6 @@ public class MainUI extends JFrame {
         Clientes Clientes = new Clientes();
         Productos Productos = new Productos();
         VariablesProducto varProducto = new VariablesProducto(nombreProducto, cantidadProducto, precioProducto);
-        Venta newVenta = new Venta();
 
         this.setContentPane(this.panel1);
         this.setTitle("Sistema de Inventario");
